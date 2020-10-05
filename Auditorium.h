@@ -12,9 +12,8 @@ using namespace std;
 
 template<class T> class Auditorium {
 public:
-    Node<T> head;
-    Auditorium<T>(string filename);
-    Auditorium<T>(Node<T> &head): head(head){};
+    Node<T> *head;
+    Auditorium<T>(const string& filename);
 
 };
 

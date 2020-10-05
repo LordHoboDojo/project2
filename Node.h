@@ -12,6 +12,20 @@ class Node {
 public:
 
 
+    Node() : payLoad(payLoad){
+        up = nullptr;
+        down = nullptr;
+        left = nullptr;
+        right = nullptr;
+
+    };
+    Node<T> (Node<T>* t):payLoad(payLoad){
+        this->payLoad = t->payLoad;
+        this->up = t->up;
+        this->down = t->down;
+        this->left = t->left;
+        this->right = t->right;
+    }
     Node* up;
     Node* down;
     Node* left;
@@ -61,10 +75,6 @@ public:
     }
 
 };
-
-
-
-
 
 
 #endif //PROJECT2_NODE_H
