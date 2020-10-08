@@ -15,46 +15,67 @@ template <class T>
         ifstream file(filename);
         string line1;
         int i = 0;
-        head = nullptr;
-        Node<Seat> *prevLine = ( Node<Seat> *)malloc(sizeof( Node<Seat>));
+        auto *prevLine = ( Node<Seat> *)malloc(sizeof( Node<Seat>));
         while (getline(file, line1)) {
             for (int j = line1.length()-1; j >=0; j--) {
                 Node<Seat> *temp = head;
                 auto *add = (Node<Seat> *) malloc(sizeof(Node<Seat>));
-                Seat data(i, j, line1[j]);
+                char seat = line1[j] ;
+                Seat data(i, j, seat);
                 add->payLoad = data;
                 if (j == line1.length()-1) {
                     head = add;
                 } else {
                     head = add;
-                    add->left = temp;
-                    temp->right = head;
+                    temp->left = head;
+                    head->right = temp;
                 }
             }
+            Node<Seat> *headT = head;
             if (i >= 1) {
             for (int k = line1.length() - 1; k >= 0; k--) {
-                Node<Seat> *headT = head;
-                headT->up = prevLine;
-                prevLine->down = headT;
-                headT = headT->left;
-                prevLine = prevLine->left;
+                head->up = prevLine;
+                prevLine->down = head;
+                if(head->right != nullptr) head = head->right;
+                prevLine = prevLine->right;
             }
         }
-            prevLine = head;
+            prevLine = headT;
             i++;
         }
-        Node<Seat> *ct = head;
-        while(ct != nullptr){
-           cout<<ct->payLoad.ticketType;
-           ct = ct->left;
+        rowCount = i-1;
+        colCount = line1.length();
+        for (int k = 0; k < rowCount;k++){
+            head = head->up;
         }
-
-
+        for (int k = 0; k < colCount-1;k++){
+        head = head->left;
+        }
+        cout << head->payLoad.ticketType;
     }
 
-void printAuditorium(){
+template<class T>
+char Auditorium<T>::printAuditorium(Node<Seat> *n) {
+    Node<Seat>* rPtr;
+    // pointer to move down
+    Node<Seat>* dPtr = n;
 
+    // loop till node->down is not NULL
+    while (dPtr) {
+
+        rPtr = dPtr;
+
+        // loop till node->right is not NULL
+        while (rPtr) {
+            cout << rPtr->payLoad.ticketType;
+            rPtr = rPtr->right;
+        }
+        cout << endl;
+        dPtr = dPtr->up;
+    }
+    return 0;
 }
+
 
 template class Auditorium<Seat>::Auditorium<Seat>;
 
