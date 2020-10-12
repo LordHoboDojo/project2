@@ -1,3 +1,6 @@
-1..A2
-ACSAA
-3...4
+...A1
+A.AAA
+AAAAC
+A.AAA
+A...A
+A.AAA

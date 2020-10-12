@@ -10,6 +10,7 @@ void reserve_seats(Auditorium<Seat> auditorium, int row, int num, int t, int t1,
 int main() {
     //variable for filename
     Auditorium<Seat> a("/Users/shaunakkulkarni/CLionProjects/project2/file.txt");
+    cout<< a.getBestSeatAvailable(2)->payLoad.row<<endl;
 
 
     return 0;

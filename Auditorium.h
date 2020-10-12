@@ -15,8 +15,9 @@ public:
     Node<T> *head;
     int rowCount;
     int colCount;
-    char printAuditorium(Node<Seat>* n);
     Auditorium<T>(const string& filename);
+    double checkAvailability(Node<T> *start,int numOfSeats);
+    Node<T>* getBestSeatAvailable(int numOfSeats);
 
 };
 
